@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommendation Website</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://source.unsplash.com/1600x900/?library,books') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            color: #f5f5f5;
+        }
+        .navbar {
+            background-color: rgba(111, 66, 193, 0.8);
+        }
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        .container h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #ffc107;
+            font-weight: bold;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 30px;
+            height: 550px; /* Increased height for cards */
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .card-body {
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Ensure proper spacing */
+        }
+        .card-img-top {
+            max-height: 200px;
+            object-fit: cover;
+        }
+        .text-purple {
+            color: #6f42c1;
+        }
+        .text-muted {
+            color: #6c757d !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand">Book Recommendation System</a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/recommendation">Recommendation</a></li>
+            <li class="nav-item"><a class="nav-link">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Top 100 Books</h1>
+        <div class="row">
+            {% for i in range(book_name|length) %}
+                <div class="col-md-3" style="margin-top:30px">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ image[i] }}" alt="{{ book_name[i] }}">
+                        <div class="card-body">
+                            <h4 class="text-purple">{{ book_name[i] }}</h4>
+                            <h5 class="text-muted">{{ author[i] }}</h5>
+                            <h6 class="text-muted">{{ publisher[i] }}</h6>
+                            <p>Votes: {{ votes[i] }}</p>
+                            <p>Rating: {{ rating[i] }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
